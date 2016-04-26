@@ -1,0 +1,127 @@
+<html>
+<head>
+  <title>HE Styled Select</title>
+  <link type="text/css" rel="stylesheet" href="css/styles.css" />
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/he_styled_select.min.js"></script>
+</head>
+<body>
+
+<h1>Human Element (HE) "Styled Select" Demo</h1>
+
+<p>A lightweight plugin to swap out select dropdowns with html that can be styled and hooked up to an onchange handler.</p>
+  <p>Designate which select dropdowns have this functionality with <strong>heStyledSelect.init( ... );</strong></p>
+
+<h2>Example 1</h2>
+
+  <p>Unstyled example (default browser select box):</p>
+  <select>
+    <option>[select]</option>
+    <option value="1">Option A</option>
+    <option value="2">Option B</option>
+    <option value="3">Option C</option>
+  </select>
+
+  <p><strong>Styled example</strong>:</p>
+  <select class="example1">
+    <option>[select]</option>
+    <option value="1">Option A</option>
+    <option value="2">Option B</option>
+    <option value="3">Option C</option>
+  </select>
+
+<h2>Example 2</h2>
+
+  <p>Unstyled example (default browser select box):</p>
+  <select>
+    <option>[select]</option>
+    <option value="1">Alpha</option>
+    <option value="2">Beta</option>
+    <option value="3">Upsilon</option>
+    <option value="4">Kappa</option>
+    <option value="5">Lambda</option>
+    <option value="6">Mu</option>
+    <option value="7">Gamma</option>
+    <option value="8">Omicron</option>
+    <option value="9">Even More!</option>
+  </select>
+
+  <p><strong>Styled example</strong>:</p>
+  <select class="example2">
+    <option>[select]</option>
+    <option value="1">Alpha</option>
+    <option value="2">Beta</option>
+    <option value="3">Upsilon</option>
+    <option value="4">Kappa</option>
+    <option value="5">Lambda</option>
+    <option value="6">Mu</option>
+    <option value="7">Gamma</option>
+    <option value="8">Omicron</option>
+    <option value="9">Even More!</option>
+  </select>
+
+<h2>Code for these examples</h2>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    /* ===============================================================
+    * Start of simulating a change event outside of the he_styled_select plugin
+    * that is already being attached to the <select> element
+    * ================================================================ */
+    jQuery('select').change(function(){ //event attached to the original <select> element
+      var selectedVal=jQuery(this).val();
+      var selectedOption;
+      if(selectedVal==undefined){
+        selectedOption=jQuery(this).children('option').not('[value]').eq(0);
+        if(selectedOption.length<1){
+          selectedOption=jQuery(this).children('option[value=""]:first');
+        }
+      }else{
+        selectedOption=jQuery(this).children('option[value="'+selectedVal+'"]:first');
+      }
+      //print a message on selection change
+      console.log('You selected: "'+selectedOption.text()+'"');
+    });
+    /* ===============================================================
+    * End of simulating a change event outside of the he_styled_select plugin
+    * that is already being attached to the <select> element
+    * ================================================================ */
+
+
+
+
+
+    //example 1
+    heStyledSelect.init({
+        select:'select.example1' //select a specific <select> element to "style"
+        //no onchange is NOT specified so NO event is triggered onchange
+    });
+
+    //example 2
+    heStyledSelect.init({
+        select:'select.example2', //select a specific <select> element to "style"
+        onchange:function(select, args){ //trigger the original <select> change event on-change
+            select.change();
+            //Event.simulate(select[0], 'change'); //prototype
+        }
+    });
+
+  });
+</script>
+
+<div class="code">
+  &lt;<span class="object">script</span> <span class="number">type</span>=<span class="string">"text/javascript"</span>&gt;<br />
+    <span class="method">jQuery</span>(<span class="number">document</span>).<span class="method">ready</span>(function(){<br />
+  <br />
+
+
+
+
+  <br />
+    });<br />
+  &lt;/<span class="object">script</span>&gt;
+</div>
+
+</body>
+</html>
