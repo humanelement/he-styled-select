@@ -69,7 +69,7 @@
     * Start of simulating a change event outside of the he_styled_select plugin
     * that is already being attached to the <select> element
     * ================================================================ */
-    jQuery('select').change(function(){ //event attached to the original <select> element
+    jQuery('select.example1, select.example2').change(function(){ //event attached to the original <select> element
       var selectedVal=jQuery(this).val();
       var selectedOption;
       if(selectedVal==undefined){
@@ -95,14 +95,14 @@
     //example 1
     heStyledSelect.init({
         select:'select.example1' //select a specific <select> element to "style"
-        //no onchange is NOT specified so NO event is triggered onchange
+        //no onchange is specified, so NO event is triggered onchange
     });
 
     //example 2
     heStyledSelect.init({
         select:'select.example2', //select a specific <select> element to "style"
-        onchange:function(select, args){ //trigger the original <select> change event on-change
-            select.change();
+        onchange:function(select, args){
+            select.change(); //trigger the original <select> jQuery change event
             //Event.simulate(select[0], 'change'); //prototype
         }
     });
@@ -114,6 +114,53 @@
   &lt;<span class="object">script</span> <span class="number">type</span>=<span class="string">"text/javascript"</span>&gt;<br />
     <span class="method">jQuery</span>(<span class="number">document</span>).<span class="method">ready</span>(function(){<br />
   <br />
+
+
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/* ===============================================================<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* Start of simulating a change event outside of the he_styled_select plugin<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* that is already being attached to the &lt;select&gt; element<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* ================================================================ */</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="method">jQuery</span>(<span class="string">'select.example1, select.example2'</span>).<span class="method">change</span>(function(){ <span class="comment">//event attached to the original &lt;select&gt; element</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  var selectedVal=<span class="method">jQuery</span>(this).<span class="method">val</span>();<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  var selectedOption;<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  if(selectedVal==undefined){<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedOption=<span class="method">jQuery</span>(this).<span class="method">children</span>(<span class="string">'option'</span>).not(<span class="string">'[value]'</span>).eq(0);<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(selectedOption.length&lt;1){<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  selectedOption=<span class="method">jQuery</span>(this).<span class="method">children</span>(<span class="string">'option[value=""]:first'</span>);<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  }else{<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectedOption=<span class="method">jQuery</span>(this).<span class="method">children</span>(<span class="string">'option[value="'</span>+selectedVal+<span class="string">'"]:first'</span>);<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  }<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  <span class="comment">//print a message on selection change</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;  console.log(<span class="string">'You selected: "'</span>+selectedOption.text()+<span class="string">'"'</span>);<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/* ===============================================================<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* End of simulating a change event outside of the he_styled_select plugin<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* that is already being attached to the &lt;select&gt; element<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;* ================================================================ */</span><br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//example 1</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="object">heStyledSelect</span>.<span class="method">init</span>({<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select:<span class="string">'select.example1'</span> <span class="comment">//select a specific &lt;select&gt; element to "style"</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//no onchange is specified, so NO event is triggered onchange</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//example 2</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<span class="object">heStyledSelect</span>.<span class="method">init</span>({<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select:<span class="string">'select.example2'</span>, <span class="comment">//select a specific &lt;select&gt; element to "style"</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="method">onchange</span>:function(select, args){<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select.<span class="method">change</span>(); <span class="comment">//trigger the original &lt;select&gt; jQuery change event</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Event.simulate(select[0], 'change'); //prototype</span><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;});
+
+
 
 
 
