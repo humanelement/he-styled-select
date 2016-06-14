@@ -124,8 +124,15 @@ var heStyledSelect=(function(){
           optionsEl.html('');
           select.children('option').each(function(){
               var option=jQuery(this);
-              var val=option.attr('value'); if(val==undefined){ val=''; }
+              var val=option.attr('value');
               var txt=option.text();
+              if(val==undefined){
+                  if(option.index()===0){
+                    val='';
+                  }else{
+                    option.attr('value',txt); val=option.attr('value');
+                  }
+              }
               optionsEl.append('<div data-value="'+val+'" class="select-option">'+txt+'</div>');
               var optionEl=optionsEl.children('.select-option:last');
               if(val===selVal){ optionEl.addClass('selected'); }
@@ -155,6 +162,7 @@ var heStyledSelect=(function(){
               var selects=jQuery(selectSel).not('.init-he-styled-select');
               if(selects.length>0){
                   var onchange=getArg('onchange');
+                  var classes=getArg('classes');
                   var currentSelectNum=jQuery('.init-he-styled-select').length;
                   selects.each(function(s){
                       var select=jQuery(this); select.addClass('init-he-styled-select');
@@ -170,6 +178,12 @@ var heStyledSelect=(function(){
                           }
                       });
                       var wrap=self['getWrapForSelect'](select);
+                      if(classes!=undefined){
+                          for(var c=0;c<classes.length;c++){
+                              select.addClass(classes[c]);
+                              wrap.addClass(classes[c]);
+                          }
+                      }
                       var btn=wrap.children('.select-btn:last');
                       var valEl=wrap.children('.select-val:last');
                       valEl.click(function(e){
