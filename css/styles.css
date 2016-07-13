@@ -1,5 +1,5 @@
 /* line 11, ../scss/_plugin-sample-styles.scss */
-.init-he-styled-select {
+select.init-he-styled-select {
   display: none;
 }
 
@@ -16,7 +16,18 @@
   white-space: nowrap;
 }
 /* line 16, ../scss/_plugin-sample-styles.scss */
-.he-styled-select-wrap .select-val {
+.he-styled-select-wrap .he-select-el {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 18, ../scss/_plugin-sample-styles.scss */
+.he-styled-select-wrap .select-val,
+.he-styled-select-wrap .he-select-el select {
+  -webkit-appearance: none;
   padding: 0 17.5px;
   border-right: solid 22px transparent;
   overflow: hidden;
@@ -29,7 +40,22 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-/* line 18, ../scss/_plugin-sample-styles.scss */
+/* line 21, ../scss/_plugin-sample-styles.scss */
+.he-styled-select-wrap .he-select-el select {
+  cursor: pointer;
+  display: block;
+  width: 110%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+/* line 22, ../scss/_plugin-sample-styles.scss */
+.he-styled-select-wrap .he-select-el select option {
+  color: #282c34;
+  background-color: #fff;
+}
+/* line 24, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-options {
   overflow: auto;
   max-height: 245px;
@@ -44,7 +70,7 @@
   border: solid 1px #282c34;
   background-color: #fff;
 }
-/* line 21, ../scss/_plugin-sample-styles.scss */
+/* line 27, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-options .select-option {
   border-bottom: solid 1px #ccc;
   padding: 0 17.5px;
@@ -55,20 +81,20 @@
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 22, ../scss/_plugin-sample-styles.scss */
+/* line 28, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-options .select-option:hover {
   background-color: #ccc;
 }
-/* line 23, ../scss/_plugin-sample-styles.scss */
+/* line 29, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-options .select-option.selected {
   background-color: blue;
   color: #fff;
 }
-/* line 24, ../scss/_plugin-sample-styles.scss */
+/* line 30, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-options .select-option:last-child {
   border-bottom: none;
 }
-/* line 27, ../scss/_plugin-sample-styles.scss */
+/* line 33, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-btn {
   position: relative;
   background-color: #282c34;
@@ -78,7 +104,7 @@
   width: 22px;
   height: 100%;
 }
-/* line 30, ../scss/_plugin-sample-styles.scss */
+/* line 36, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap .select-btn:after {
   position: absolute;
   left: 0;
@@ -94,22 +120,23 @@
   border-color: #fff transparent transparent transparent;
 }
 
-/* line 34, ../scss/_plugin-sample-styles.scss */
+/* line 40, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap.select-open {
   z-index: 9999;
-  border: solid 1px #fff;
-}
-/* line 37, ../scss/_plugin-sample-styles.scss */
-.he-styled-select-wrap.select-open .select-val {
+  border: solid 1px blue;
   background-color: blue;
+}
+/* line 46, ../scss/_plugin-sample-styles.scss */
+.he-styled-select-wrap.select-open .select-val,
+.he-styled-select-wrap.select-open .he-select-el select {
   color: #fff;
 }
-/* line 38, ../scss/_plugin-sample-styles.scss */
+/* line 48, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap.select-open .select-options {
   display: block;
   z-index: 9999;
 }
-/* line 39, ../scss/_plugin-sample-styles.scss */
+/* line 49, ../scss/_plugin-sample-styles.scss */
 .he-styled-select-wrap.select-open .select-btn {
   background-color: blue;
 }

@@ -61,6 +61,24 @@
     <option value="9">Even More!</option>
   </select>
 
+  <h2>Example 3</h2>
+
+    <p>Unstyled example (default browser select box):</p>
+    <select>
+      <option>[select]</option>
+      <option value="1">Option A</option>
+      <option value="2">Option B</option>
+      <option value="3">Option C</option>
+    </select>
+
+    <p><strong>Styled example</strong>: <em>style_options_list</em>:<strong>false</strong></p>
+    <select class="example3">
+      <option>[select]</option>
+      <option value="1">Option A</option>
+      <option value="2">Option B</option>
+      <option value="3">Option C</option>
+    </select>
+
 <h2>Code for these examples</h2>
 
 <script type="text/javascript">
@@ -104,6 +122,15 @@
         onchange:function(select, args){
             select.change(); //trigger the original <select> jQuery change event
             //Event.simulate(select[0], 'change'); //prototype
+        }
+    });
+
+    //example 1
+    heStyledSelect.init({
+        select:'select.example3',
+        style_options_list:false, //use the default options list when the dropdown is open
+        onchange:function(select, args){
+            console.log('You selected: '+args['text']);
         }
     });
 
